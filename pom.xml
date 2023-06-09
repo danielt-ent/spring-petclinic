@@ -28,7 +28,6 @@
     <checkstyle.version>10.11.0</checkstyle.version>
     <jacoco.version>0.8.10</jacoco.version>
     <libsass.version>0.2.29</libsass.version>
-    <lifecycle-mapping>1.0.0</lifecycle-mapping>
     <maven-checkstyle.version>3.2.2</maven-checkstyle.version>
     <nohttp-checkstyle.version>0.0.11</nohttp-checkstyle.version>
     <spring-format.version>0.0.39</spring-format.version>
@@ -303,7 +302,6 @@
             <executions>
               <execution>
                 <id>unpack</id>
-                <?m2e execute onConfiguration,onIncremental?>
                 <phase>generate-resources</phase>
                 <goals>
                   <goal>unpack</goal>
@@ -329,7 +327,6 @@
             <executions>
               <execution>
                 <phase>generate-resources</phase>
-                <?m2e execute onConfiguration,onIncremental?>
                 <goals>
                   <goal>compile</goal>
                 </goals>
@@ -342,72 +339,6 @@
             </configuration>
           </plugin>
         </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>m2e</id>
-      <activation>
-        <property>
-          <name>m2e.version</name>
-        </property>
-      </activation>
-      <build>
-        <pluginManagement>
-          <plugins>
-            <!-- This plugin's configuration is used to store Eclipse m2e settings
-   only. It has no influence on the Maven build itself. -->
-            <plugin>
-              <groupId>org.eclipse.m2e</groupId>
-              <artifactId>lifecycle-mapping</artifactId>
-              <version>${lifecycle-mapping}</version>
-              <configuration>
-                <lifecycleMappingMetadata>
-                  <pluginExecutions>
-                    <pluginExecution>
-                      <pluginExecutionFilter>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-checkstyle-plugin</artifactId>
-                        <versionRange>[1,)</versionRange>
-                        <goals>
-                          <goal>check</goal>
-                        </goals>
-                      </pluginExecutionFilter>
-                      <action>
-                        <ignore />
-                      </action>
-                    </pluginExecution>
-                    <pluginExecution>
-                      <pluginExecutionFilter>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-maven-plugin</artifactId>
-                        <versionRange>[1,)</versionRange>
-                        <goals>
-                          <goal>build-info</goal>
-                        </goals>
-                      </pluginExecutionFilter>
-                      <action>
-                        <ignore />
-                      </action>
-                    </pluginExecution>
-                    <pluginExecution>
-                      <pluginExecutionFilter>
-                        <groupId>io.spring.javaformat</groupId>
-                        <artifactId>spring-javaformat-maven-plugin</artifactId>
-                        <versionRange>[0,)</versionRange>
-                        <goals>
-                          <goal>validate</goal>
-                        </goals>
-                      </pluginExecutionFilter>
-                      <action>
-                        <ignore />
-                      </action>
-                    </pluginExecution>
-                  </pluginExecutions>
-                </lifecycleMappingMetadata>
-              </configuration>
-            </plugin>
-          </plugins>
-        </pluginManagement>
       </build>
     </profile>
   </profiles>
