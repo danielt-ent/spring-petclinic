@@ -37,7 +37,8 @@
     <nohttp-checkstyle.version>0.0.11</nohttp-checkstyle.version>
     <spring-format.version>0.0.39</spring-format.version>
 
-    <docker-image-name>myimage</docker-image-name>
+    <docker.registry>petacrtrial.azurecr.io</docker.registry>
+    <docker-image-name>${docker.registry}/petclinic-azo11y</docker-image-name>
   </properties>
 
   <dependencies>
@@ -65,6 +66,10 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-registry-prometheus</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -263,8 +268,11 @@
         <artifactId>jib-maven-plugin</artifactId>
         <version>${jib-maven-plugin.version}</version>
         <configuration>
+          <container>
+            <creationTime>${project.build.outputTimestamp}</creationTime>
+          </container>
           <to>
-            <image>${docker-image-name}</image>
+            <image>${docker-image-name}:${project.version}</image>
           </to>
         </configuration>
       </plugin>

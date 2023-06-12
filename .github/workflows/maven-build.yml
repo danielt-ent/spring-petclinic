@@ -26,7 +26,7 @@ jobs:
           distribution: 'adopt'
           cache: maven
       - name: Build with Maven Wrapper
-        run: ./mvnw -B package
+        run: ./mvnw -B verify
       - name: Docker Login
         uses: docker/login-action@v2.2.0
         with:
@@ -36,3 +36,5 @@ jobs:
           username: ${{secrets.dockeruser}}
           # Password or personal access token used to log against the Docker registry
           password: ${{secrets.dockerpw}}
+      - name: Build with Maven Wrapper
+        run: ./mvnw -B jib:build
